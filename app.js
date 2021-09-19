@@ -1,3 +1,4 @@
+// Lode data and add input value and dynmic url 
 const lodeData = () =>{
     const input =document.getElementById('input-text')
     const inputText = input.value;
@@ -9,6 +10,8 @@ const lodeData = () =>{
     .then(res => res.json())
     .then(data => displayData(data.docs))
 }
+
+// Get different type of data 
 const displayData = datas => {
   console.log(datas.length);
   const bookDetails = document.getElementById('book-details')
@@ -51,6 +54,7 @@ const showResult = number => {
   const showNumber =document.getElementById('result-number');
   showNumber.innerText =number;
 }
+// Get spneer 
 const spinnerTagole = displayStyle => {
  document.getElementById('tagol-spinner').style.display =displayStyle;
 //  const div =document.createElement('div');
