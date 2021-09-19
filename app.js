@@ -1,6 +1,7 @@
 const lodeData = () =>{
     const input =document.getElementById('input-text')
     const inputText = input.value;
+    spinnerTagole('block');
     input.value = '';
     console.log(inputText);
     const url = `https://openlibrary.org/search.json?q=${inputText}`
@@ -9,9 +10,13 @@ const lodeData = () =>{
     .then(data => displayData(data.docs))
 }
 const displayData = datas => {
+  console.log(datas.length);
+  const bookDetails = document.getElementById('book-details')
+  bookDetails.textContent=' ';
+  showResult(datas.length);
     datas.forEach(element => {
+        // showResult(element.length);
         console.log(element);
-        const bookDetails = document.getElementById('book-details')
         const div =document.createElement('div');
         div.classList.add('col-4');
         div.innerHTML =
@@ -32,11 +37,29 @@ const displayData = datas => {
       </div>      
         `
     bookDetails.appendChild(div);
+    // console.log(div.length);
         
-    });
+     });
+  spinnerTagole('none');
 }
 // Get Photo 
 const lodeImage = id => {
     const url= `https://covers.openlibrary.org/b/id/${id}-M.jpg`
     return url;
+}
+const showResult = number => {
+  const showNumber =document.getElementById('result-number');
+  showNumber.innerText =number;
+}
+const spinnerTagole = displayStyle => {
+ document.getElementById('tagol-spinner').style.display =displayStyle;
+//  const div =document.createElement('div');
+//  div.classList.add(displayStyle);
+//  div.innerHTML =`
+//  <div class="text-center">
+//  <div  class="spinner-border" role="status">
+//    <span  class="visually-hidden">Loading...</span>
+//  </div>
+// </div>
+ 
 }
